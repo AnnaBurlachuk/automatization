@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group = 'ukma'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task checkFile () {
+    doLast {
+        def file = file("time.txt")
+
+        if (file.exists()) {
+            println "File '$file' exists."
+        } else {
+            println "File '$file' doesn't exist."
+        }
+    }
+}
+
+task createTimeFile {
+    doLast {
+        def currentDateTime = new Date().format('yyyy-MM-dd HH:mm:ss')
+        def file = new File("time.txt")
+        file.text = "$currentDateTime"
+        println "Created a file with content: $currentDateTime"
+    }
+}
