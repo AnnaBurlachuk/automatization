@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':annotations')
+    annotationProcessor project(':compiler')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testImplementation 'io.cucumber:cucumber-java:6.10.4'
+    testImplementation 'io.cucumber:cucumber-junit:6.10.4'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
